@@ -216,7 +216,7 @@ function AiDramaShowcase({ isOpen, onClose }: AiDramaShowcaseProps) {
           <div className="ai-drama-showcase__videos">
             {[1, 2].map((number) => (
               <article key={number}>
-                <video controls playsInline preload="metadata" poster={publicAsset('/assets/ai-drama/cover.webp')}>
+                <video controls playsInline preload="none" poster={publicAsset('/assets/ai-drama/cover.webp')}>
                   <source src={publicAsset(`/assets/ai-drama/video/shot-0${number}.mp4`)} type="video/mp4" />
                 </video>
                 <strong>动态镜头测试 {String(number).padStart(2, '0')}</strong>

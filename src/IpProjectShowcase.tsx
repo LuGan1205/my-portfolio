@@ -161,7 +161,7 @@ function IpProjectShowcase({ isOpen, onClose }: IpProjectShowcaseProps) {
               {activeGroup.items.map((item, index) => (
                 item.type === 'video' ? (
                   <article className="ip-showcase__media-card ip-showcase__media-card--video" key={item.src}>
-                    <video controls playsInline preload="metadata" poster={publicAsset('/assets/ip-design/core-poster.webp')}>
+                    <video controls playsInline preload="none" poster={publicAsset('/assets/ip-design/core-poster.webp')}>
                       <source src={item.src} type="video/mp4" />
                     </video>
                     <div>

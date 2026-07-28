@@ -27,9 +27,13 @@ import PixelCompanionExperience from './PixelCompanion';
 import { publicAsset } from './publicAsset';
 import { usePortfolioMotion } from './usePortfolioMotion';
 
-const AiDramaShowcase = lazy(() => import('./AiDramaShowcase'));
-const IpProjectShowcase = lazy(() => import('./IpProjectShowcase'));
-const PhoneDrawer = lazy(() => import('./PhoneDrawer'));
+const loadAiDramaShowcase = () => import('./AiDramaShowcase');
+const loadIpProjectShowcase = () => import('./IpProjectShowcase');
+const loadPhoneDrawer = () => import('./PhoneDrawer');
+
+const AiDramaShowcase = lazy(loadAiDramaShowcase);
+const IpProjectShowcase = lazy(loadIpProjectShowcase);
+const PhoneDrawer = lazy(loadPhoneDrawer);
 
 const projectGlowColors = ['#a7d4f3', '#efb9d3', '#c2e5f7'];
 const strengthGlowBackgrounds = ['#f6faff', '#fff7fb', '#f3f9ff', '#fbf8ff'];
@@ -154,9 +158,11 @@ const strengths = [
 function Header({
   isFloating,
   onOpenPhone,
+  onPreparePhone,
 }: {
   isFloating: boolean;
   onOpenPhone: () => void;
+  onPreparePhone: () => void;
 }) {
   return (
     <header className={`site-header${isFloating ? ' site-header--floating' : ''}`}>
@@ -170,7 +176,13 @@ function Header({
         <a href="#strengths">能力</a>
       </nav>
       <div className="header-actions">
-        <button className="header-phone" type="button" onClick={onOpenPhone}>
+        <button
+          className="header-phone"
+          type="button"
+          onClick={onOpenPhone}
+          onPointerEnter={onPreparePhone}
+          onFocus={onPreparePhone}
+        >
           <Smartphone size={17} aria-hidden="true" />
           <span>小手机</span>
         </button>
@@ -253,7 +265,8 @@ function About() {
             alt="蓝色窗边的花朵、玻璃与空白笔记本静物"
             width="864"
             height="1821"
-            loading="lazy"
+            loading="eager"
+            fetchPriority="low"
             decoding="async"
           />
           <figcaption>
@@ -335,6 +348,8 @@ function Projects() {
               className="project-card project-card-main project-card-drama project-card-trigger"
               type="button"
               onClick={() => setIsDramaShowcaseOpen(true)}
+              onPointerEnter={loadAiDramaShowcase}
+              onFocus={loadAiDramaShowcase}
               aria-haspopup="dialog"
             >
               <div className="project-media">
@@ -343,7 +358,8 @@ function Projects() {
                   alt="穿成恶毒女配后全员开始发癫 AI 漫剧练习封面"
                   width="1023"
                   height="1537"
-                  loading="lazy"
+                  loading="eager"
+                  fetchPriority="low"
                   decoding="async"
                 />
               </div>
@@ -364,6 +380,8 @@ function Projects() {
                 className="project-card project-card-ip project-card-trigger"
                 type="button"
                 onClick={() => setIsIpShowcaseOpen(true)}
+                onPointerEnter={loadIpProjectShowcase}
+                onFocus={loadIpProjectShowcase}
                 aria-haspopup="dialog"
               >
                 <div className="project-media">
@@ -372,7 +390,8 @@ function Projects() {
                     alt="哥特圣女灰银色长发角色的 3D 渲染视觉"
                     width="1086"
                     height="1448"
-                    loading="lazy"
+                    loading="eager"
+                    fetchPriority="low"
                     decoding="async"
                   />
                 </div>
@@ -586,6 +605,9 @@ function App() {
     setHasOpenedPhone(true);
     setIsPhoneOpen(true);
   }, []);
+  const preparePhone = useCallback(() => {
+    void loadPhoneDrawer();
+  }, []);
   const closePhone = useCallback(() => setIsPhoneOpen(false), []);
   usePortfolioMotion(motionRootRef);
 
@@ -621,7 +643,11 @@ function App() {
 
   return (
     <div className="site-shell" ref={motionRootRef}>
-      <Header isFloating={isHeaderFloating} onOpenPhone={openPhone} />
+      <Header
+        isFloating={isHeaderFloating}
+        onOpenPhone={openPhone}
+        onPreparePhone={preparePhone}
+      />
       <main>
         <Hero />
         <About />
@@ -637,6 +663,8 @@ function App() {
             type="button"
             aria-label="打开小手机"
             onClick={openPhone}
+            onPointerEnter={preparePhone}
+            onFocus={preparePhone}
           />
         </aside>
       )}

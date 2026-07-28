@@ -99,7 +99,7 @@ export function usePortfolioMotion(root: MotionRoot) {
               {
                 scale: 1,
                 opacity: 1,
-                duration: 2.5,
+                duration: 1.6,
                 ease: 'power3.out',
               },
               0,
@@ -108,19 +108,19 @@ export function usePortfolioMotion(root: MotionRoot) {
               openingCurtain[0],
               {
                 yPercent: -105,
-                duration: 1.75,
+                duration: 1,
                 ease: 'power4.inOut',
               },
-              0.18,
+              0.08,
             )
             .to(
               openingCurtain[1],
               {
                 yPercent: 105,
-                duration: 1.75,
+                duration: 1,
                 ease: 'power4.inOut',
               },
-              0.18,
+              0.08,
             )
             .fromTo(
               '.site-header > *',
@@ -128,11 +128,11 @@ export function usePortfolioMotion(root: MotionRoot) {
               {
                 y: 0,
                 opacity: 1,
-                duration: 1.25,
-                stagger: 0.08,
+                duration: 0.8,
+                stagger: 0.05,
                 ease: 'expo.out',
               },
-              0.82,
+              0.35,
             )
             .fromTo(
               '.hero-title-line > span',
@@ -146,11 +146,11 @@ export function usePortfolioMotion(root: MotionRoot) {
                 yPercent: 0,
                 scaleY: 1,
                 opacity: 1,
-                duration: 1.55,
-                stagger: 0.16,
+                duration: 1,
+                stagger: 0.1,
                 ease: 'power4.out',
               },
-              0.92,
+              0.4,
             )
             .fromTo(
               '.hero-content > p',
@@ -159,9 +159,9 @@ export function usePortfolioMotion(root: MotionRoot) {
                 y: 0,
                 opacity: 1,
                 letterSpacing: '0.16em',
-                duration: 1.25,
+                duration: 0.75,
               },
-              1.5,
+              0.85,
             )
             .fromTo(
               '.hero-actions > *',
@@ -169,10 +169,10 @@ export function usePortfolioMotion(root: MotionRoot) {
               {
                 y: 0,
                 opacity: 1,
-                duration: 1.2,
-                stagger: 0.12,
+                duration: 0.7,
+                stagger: 0.08,
               },
-              1.68,
+              1,
             )
             .fromTo(
               '.wind-chime',
@@ -181,10 +181,10 @@ export function usePortfolioMotion(root: MotionRoot) {
                 x: 0,
                 rotate: 0,
                 opacity: 0.82,
-                duration: 1.8,
+                duration: 0.9,
                 ease: 'power3.out',
               },
-              0.88,
+              0.4,
             )
             .fromTo(
               '.palette-note, .scroll-cue',
@@ -192,10 +192,10 @@ export function usePortfolioMotion(root: MotionRoot) {
               {
                 opacity: 1,
                 y: 0,
-                duration: 1,
-                stagger: 0.1,
+                duration: 0.55,
+                stagger: 0.06,
               },
-              2.05,
+              1.2,
             );
         };
 
