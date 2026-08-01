@@ -1,0 +1,4 @@
+interface:
+  display_name: "个人网站构建"
+  short_description: "规划内容、视觉、交互与发布流程，构建可信的个人作品集网站"
+  default_prompt: "使用 $build-personal-website，把我的经历与项目整理成可发布的个人网站。"
